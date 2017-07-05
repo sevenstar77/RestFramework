@@ -15,11 +15,33 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+<<<<<<< HEAD
 from blog.views import blog_page
 
 urlpatterns = [
     url(r'^rest-api/', include('rest_framework.urls')),
     #url(r'^rest-swagger/', include('rest_framework_swagger.urls')),
+=======
+from django.contrib.auth.models import User
+from rest_framework import routers, serializers, viewsets
+
+
+class UserSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = User
+        fields = ('url', 'username', 'email', 'is_staff')
+
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+router = routers.DefaultRouter()
+router.register(r'users', UserViewSet)
+
+urlpatterns = [
+    url(r'^', include(router.urls)),
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+>>>>>>> 62adfd1d522ab88dad67949fd36a01ec01c42051
     url(r'^admin/', admin.site.urls),
 
     url('^blog/', blog_page)
