@@ -7,7 +7,6 @@ venv_linux
 **.pyo
 .idea
 .idea/
-db.sqlite3
 debug.log
 db_query.log
 .migrations
