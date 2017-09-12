@@ -11,3 +11,5 @@ debug.log
 db_query.log
 .migrations
 .migrations/
+.DjangoRestFramework/__pycache__
+.__pycache__/
