@@ -14,3 +14,5 @@ db_query.log
 .DjangoRestFramework/__pycache__
 __pycache__/
 __pycache__
+music/migrations/0002_auto_20170910_1831.py
+music/migrations/
