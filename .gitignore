@@ -7,8 +7,12 @@ venv_linux
 **.pyo
 .idea
 .idea/
-db.sqlite3
 debug.log
 db_query.log
 .migrations
 .migrations/
+.DjangoRestFramework/__pycache__
+__pycache__/
+__pycache__
+music/migrations/0002_auto_20170910_1831.py
+music/migrations/
