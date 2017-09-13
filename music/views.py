@@ -84,6 +84,28 @@ def music_list(request):
 
         return Response(music_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+@api_view(['GET', 'POST', 'PUT'])
+def music_detail(request, pk):
+    try:
+        music = Music.objects.get(pk=pk)
+    except Music.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'GET':
+        music_serializer = MusicSerializer(music)
+
+        return Response(music_serializer.data)
+    elif request.method == 'PUT':
+        music_serializer = MusicSerializer(music, data=request.data)
+        if music_serializer.is_valid():
+            music_serializer.save()
+            #return Response(music_serializer.data, status=status.HTTP_200_OK)
+            return Response(music_serializer.data)
+        return Response(music_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    elif request.method == 'DELETE':
+        music.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 
 
