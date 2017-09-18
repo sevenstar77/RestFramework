@@ -1,5 +1,8 @@
 from rest_framework import serializers
 from music.models import Music
+from music.models import MusicCategory
+from music.models import Player
+from music.models import PlayerScore
 
 # class MusicSerializer(serializers.Serializer):
 #     pk = serializers.IntegerField(read_only=True)
@@ -21,13 +24,41 @@ from music.models import Music
 #
 #         return instance
 
-class MusicSerializer(serializers.ModelSerializer):
+# class MusicSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = Music
+#         fields = (
+#             'id',
+#             'name',
+#             'release_date',
+#             'music_category',
+#             'played'
+#         )
+
+class MusicCategorySerializer(serializers.HyperlinkedModelSerializer):
+    musics = serializers.HyperlinkedRelatedField(
+        many=True,
+        read_only=True,
+        view_name='music-detail')
+
+    class Meta:
+        model = MusicCategory
+        fields = (
+            'url',
+            'pk',
+            'name',
+            'musics'
+        )
+
+class MusicSerializer(serializers.HyperlinkedRelatedField):
+    music_category = serializers.SlugRelatedField(queryset=MusicCategory.objects.all(), slug_field='name')
+
     class Meta:
         model = Music
         fields = (
-            'id',
+            'url',
+            'music_category',
             'name',
             'release_date',
-            'music_category',
             'played'
         )
