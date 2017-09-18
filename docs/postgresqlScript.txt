@@ -1,0 +1,4 @@
+CREATE ROLE user_name WITH LOGIN PASSWORD 'password';
+GRANT ALL PRIVILEGES ON DATABASE music TO user_name;
+ALTER USER user_name CREATEDB;
+\q
