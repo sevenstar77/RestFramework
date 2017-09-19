@@ -62,3 +62,32 @@ class MusicSerializer(serializers.HyperlinkedRelatedField):
             'release_date',
             'played'
         )
+
+class ScoreSerializer(serializers.HyperlinkedModelSerializer):
+    music = MusicSerializer()
+
+    class Meta:
+        model = PlayerScore
+        fields = (
+            'url',
+            'pk',
+            'score',
+            'score_date',
+            'music',
+        )
+
+class PlayerSerializer(serializers.HyperlinkedModelSerializer):
+    socres = ScoreSerializer(many=True, read_only=True)
+    gender = serializers.ChoiceField(choices=Player.GENDER_CHOICES)
+    gender_description = serializers.CharField(
+        source='get_gender_display',read_only=True)
+
+    class Meta:
+        model = Player
+        fields = (
+            'url',
+            'name',
+            'gender',
+            'gender_description',
+            'scores',
+        )
