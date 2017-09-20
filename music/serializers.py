@@ -91,3 +91,19 @@ class PlayerSerializer(serializers.HyperlinkedModelSerializer):
             'gender_description',
             'scores',
         )
+
+class PlayerScoreSerializer(serializers.ModelSerializer):
+    player = serializers.SlugRelatedField(queryset=Player.objects.all(),
+                                          slug_field='name')
+    music = serializers.SlugRelatedField(queryset=Music.objects.all(),slug_field='name')
+
+    class Meta:
+        model = PlayerScore
+        fields = (
+            'url',
+            'pk',
+            'score',
+            'score_date',
+            'player',
+            'music',
+        )
