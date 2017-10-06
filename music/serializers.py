@@ -77,7 +77,7 @@ class ScoreSerializer(serializers.HyperlinkedModelSerializer):
         )
 
 class PlayerSerializer(serializers.HyperlinkedModelSerializer):
-    socres = ScoreSerializer(many=True, read_only=True)
+    scores = ScoreSerializer(many=True, read_only=True)
     gender = serializers.ChoiceField(choices=Player.GENDER_CHOICES)
     gender_description = serializers.CharField(
         source='get_gender_display',read_only=True)
@@ -93,8 +93,7 @@ class PlayerSerializer(serializers.HyperlinkedModelSerializer):
         )
 
 class PlayerScoreSerializer(serializers.ModelSerializer):
-    player = serializers.SlugRelatedField(queryset=Player.objects.all(),
-                                          slug_field='name')
+    player = serializers.SlugRelatedField(queryset=Player.objects.all(), slug_field='name')
     music = serializers.SlugRelatedField(queryset=Music.objects.all(),slug_field='name')
 
     class Meta:

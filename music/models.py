@@ -23,7 +23,7 @@ class MusicCategory(models.Model):
 
 class Music(models.Model):
     created = models.DateTimeField(auto_now_add=True)
-    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=200, blank=True, default='')
     music_category = models.ForeignKey(
         MusicCategory,
         related_name='musics',
