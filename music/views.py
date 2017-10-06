@@ -152,7 +152,7 @@ class MusicList(generics.ListCreateAPIView):
     name = 'music-list'
 
 class MusicDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Music.object.all()
+    queryset = Music.objects.all()
     serializer_class = MusicSerializer
     name = 'music-detail'
 
