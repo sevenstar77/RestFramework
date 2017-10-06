@@ -47,10 +47,10 @@ class MusicCategorySerializer(serializers.HyperlinkedModelSerializer):
             'url',
             'pk',
             'name',
-            'musics'
+            'musics',
         )
 
-class MusicSerializer(serializers.HyperlinkedRelatedField):
+class MusicSerializer(serializers.HyperlinkedModelSerializer):
     music_category = serializers.SlugRelatedField(queryset=MusicCategory.objects.all(), slug_field='name')
 
     class Meta:
@@ -60,7 +60,7 @@ class MusicSerializer(serializers.HyperlinkedRelatedField):
             'music_category',
             'name',
             'release_date',
-            'played'
+            'played',
         )
 
 class ScoreSerializer(serializers.HyperlinkedModelSerializer):
