@@ -14,5 +14,6 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^blog/', blog_page),
     url(r'^board/', include('post_service.urls')),
+    url(r'^', include('music.urls')),
     url(r'api/v1.0/music/', include('music.urls', namespace='music')),
 ]

@@ -18,4 +18,5 @@ urlpatterns = [
     url(r'^players/(?P<pk>[0-9]+)/$', views.PlayerDetail.as_view(), name=views.PlayerDetail.name),
     url(r'^player-scores/$', views.PlayerScoreList.as_view(), name=views.PlayerScoreList.name),
     url(r'^player-scores/(?P<pk>[0-9]+)/$', views.PlayerScoreDetail.as_view(), name=views.PlayerScoreDetail.name),
+    url(r'^$', views.ApiFunction.as_view(), name=views.ApiFunction.name)
 ]
